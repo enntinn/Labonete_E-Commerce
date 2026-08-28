@@ -128,19 +128,21 @@ loginForm.addEventListener("submit", function (e) {
     }
 
     if (
-        (username.value === savedUsername ||
-         username.value === savedEmail) &&
-        password.value === savedPassword
-    ) {
+    (username.value === savedUsername ||
+     username.value === savedEmail) &&
+    password.value === savedPassword
+) {
 
-        alert("Login successful!");
+    alert("Login successful!");
 
-        loginForm.reset();
+    loginForm.reset();
 
-    } else {
+    window.location.href = "side-menu.html";
 
-        alert("Invalid username/email or password.");
+} else {
 
-    }
+    alert("Invalid username/email or password.");
+
+}
 
 });

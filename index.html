@@ -1,145 +1,94 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOGIN PAGE</title>
-
+    <title>My Store - Login</title>
     <link rel="stylesheet" href="style.css">
-
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-
 <body>
 
-<div class="container">
-
-    <div class="login-box" id="loginBox">
-
-        <div class="icon">
-            <i class="fa-solid fa-user-lock"></i>
-        </div>
-
-        <h2>Login</h2>
-
-        <form id="loginForm">
-
-            <label for="username">Username or Email</label>
-
-            <input
-                type="text"
-                id="username"
-                placeholder="Enter username or email">
-
-            <small id="userError" class="error"></small>
-
-            <label for="password">Password</label>
-
-            <div class="password-box">
-
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Enter password">
-
-                <button
-                    type="button"
-                    id="togglePassword">
-                    Show
-                </button>
-
+    <div class="auth-container">
+        <div class="auth-card" id="loginBox">
+            <div class="store-icon">
+                <i class="fas fa-store"></i>
             </div>
 
-            <small id="passError" class="error"></small>
+            <h1>Login</h1>
+            <p class="subtitle">Welcome back to My Store!</p>
 
-            <div class="options">
+            <form id="loginForm">
+                <label for="username">Username or Email</label>
+                <input type="text" id="username" placeholder="Enter username or email" autocomplete="username" required>
+                <span class="error" id="userError"></span>
 
-                <label>
-                    <input type="checkbox">
-                    Remember Me
-                </label>
+                <label for="password">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="password" placeholder="Enter password" autocomplete="current-password" required>
+                    <button type="button" id="togglePassword">Show</button>
+                </div>
+                <span class="error" id="passError"></span>
 
-                <a href="#">Forgot Password?</a>
+                <label for="accountRole">Account Type</label>
+                <select id="accountRole" required>
+                    <option value="customer">Customer</option>
+                    <option value="seller">Seller</option>
+                </select>
 
-            </div>
+                <div class="demo-accounts">
+                    <strong>Demo Accounts</strong>
+                    <p>Customer: user@example.com / user123</p>
+                    <p>Seller: seller@example.com / seller123</p>
+                </div>
 
-            <button
-                type="submit"
-                class="login-btn">
-                Login
-            </button>
+                <div class="remember-row">
+                    <label class="remember-label">
+                        <input type="checkbox" id="rememberMe">
+                        <span>Remember Me</span>
+                    </label>
+                </div>
 
-        </form>
+                <a href="#" id="forgotPassword" class="forgot-link">Forgot Password?</a>
 
-        <p class="signup">
-            Don't have an account?
-            <a href="#" id="showSignup">
-                Sign Up
-            </a>
-        </p>
+                <button type="submit" class="primary-button">Login</button>
 
-    </div>
-
-    <div
-        class="login-box"
-        id="signupBox"
-        style="display:none;">
-
-        <div class="icon">
-            <i class="fa-solid fa-user-plus"></i>
+                <p class="switch-text">
+                    Don't have an account?
+                    <a href="#" id="showSignup">Sign Up</a>
+                </p>
+            </form>
         </div>
 
-        <h2>Create Account</h2>
+        <div class="auth-card" id="signupBox" hidden>
+            <div class="store-icon">
+                <i class="fas fa-user-plus"></i>
+            </div>
 
-        <form id="signupForm">
+            <h1>Create Account</h1>
+            <p class="subtitle">Join My Store today!</p>
 
-            <label for="newUsername">Username</label>
+            <form id="signupForm">
+                <label for="newUsername">Username</label>
+                <input type="text" id="newUsername" placeholder="Choose a username" autocomplete="username" required>
 
-            <input
-                type="text"
-                id="newUsername"
-                placeholder="Enter username">
+                <label for="newEmail">Email Address</label>
+                <input type="email" id="newEmail" placeholder="Enter your email" autocomplete="email" required>
 
-            <label for="newEmail">Email</label>
+                <label for="newPassword">Password</label>
+                <input type="password" id="newPassword" placeholder="Create a password" autocomplete="new-password" minlength="6" required>
 
-            <input
-                type="email"
-                id="newEmail"
-                placeholder="Enter email">
+                <button type="submit" class="primary-button">Create Account</button>
 
-            <label for="newPassword">Password</label>
-
-            <input
-                type="password"
-                id="newPassword"
-                placeholder="Create password">
-
-            <button
-                type="submit"
-                class="login-btn">
-
-                Create Account
-
-            </button>
-
-        </form>
-
-        <p class="signup">
-
-            Already have an account?
-
-            <a href="#" id="showLogin">
-                Login
-            </a>
-
-        </p>
-
+                <p class="switch-text">
+                    Already have an account?
+                    <a href="#" id="showLogin">Login</a>
+                </p>
+            </form>
+        </div>
     </div>
 
-</div>
-
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
 </body>
 </html>

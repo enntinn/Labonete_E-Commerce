@@ -1,148 +1,241 @@
-const loginBox = document.getElementById("loginBox");
-const signupBox = document.getElementById("signupBox");
 
-const loginForm = document.getElementById("loginForm");
-const signupForm = document.getElementById("signupForm");
+document.addEventListener("DOMContentLoaded", function () {
+    const loginForm = document.getElementById("loginForm");
+    const signupForm = document.getElementById("signupForm");
+    const loginBox = document.getElementById("loginBox");
+    const signupBox = document.getElementById("signupBox");
 
-const username = document.getElementById("username");
-const password = document.getElementById("password");
+    const usernameInput = document.getElementById("username");
+    const passwordInput = document.getElementById("password");
+    const accountRole = document.getElementById("accountRole");
+    const rememberMe = document.getElementById("rememberMe");
+    const togglePassword = document.getElementById("togglePassword");
 
-const userError = document.getElementById("userError");
-const passError = document.getElementById("passError");
+    const userError = document.getElementById("userError");
+    const passError = document.getElementById("passError");
 
-const togglePassword = document.getElementById("togglePassword");
+    const showSignup = document.getElementById("showSignup");
+    const showLogin = document.getElementById("showLogin");
+    const forgotPassword = document.getElementById("forgotPassword");
 
-const showSignup = document.getElementById("showSignup");
-const showLogin = document.getElementById("showLogin");
+    const USERS_KEY = "myStoreUsers";
+    const REMEMBER_KEY = "myStoreRememberedUser";
+    const ACTIVE_USER_KEY = "activeStoreUser";
 
-showSignup.addEventListener("click", function (e) {
+    function getUsers() {
+        try {
+            const savedUsers = JSON.parse(localStorage.getItem(USERS_KEY) || "[]");
 
-    e.preventDefault();
+            const demoUsers = [
+                {
+                    username: "user",
+                    email: "user@example.com",
+                    password: "user123",
+                    role: "customer"
+                },
+                {
+                    username: "seller",
+                    email: "seller@example.com",
+                    password: "seller123",
+                    role: "seller"
+                }
+            ];
 
-    loginBox.style.display = "none";
-    signupBox.style.display = "block";
+            demoUsers.forEach(function (demoUser) {
+                const exists = savedUsers.some(function (user) {
+                    return user.username.toLowerCase() === demoUser.username ||
+                        user.email.toLowerCase() === demoUser.email;
+                });
 
-});
+                if (!exists) {
+                    savedUsers.push(demoUser);
+                }
+            });
 
-showLogin.addEventListener("click", function (e) {
-
-    e.preventDefault();
-
-    signupBox.style.display = "none";
-    loginBox.style.display = "block";
-
-});
-
-
-togglePassword.addEventListener("click", function () {
-
-    if (password.type === "password") {
-
-        password.type = "text";
-        togglePassword.textContent = "Hide";
-
-    } else {
-
-        password.type = "password";
-        togglePassword.textContent = "Show";
-
+            localStorage.setItem(USERS_KEY, JSON.stringify(savedUsers));
+            return savedUsers;
+        } catch (error) {
+            console.error("Unable to load accounts:", error);
+            return [];
+        }
     }
 
-});
-
-
-signupForm.addEventListener("submit", function (e) {
-
-    e.preventDefault();
-
-    const newUsername = document.getElementById("newUsername").value.trim();
-    const newEmail = document.getElementById("newEmail").value.trim();
-    const newPassword = document.getElementById("newPassword").value;
-
-    if (newUsername === "" || newEmail === "" || newPassword === "") {
-
-        alert("Please complete all fields.");
-        return;
-
+    function saveUsers(users) {
+        localStorage.setItem(USERS_KEY, JSON.stringify(users));
     }
 
-    if (newPassword.length < 6) {
-
-        alert("Password must be at least 6 characters.");
-        return;
-
+    function clearErrors() {
+        userError.textContent = "";
+        passError.textContent = "";
     }
 
-    localStorage.setItem("username", newUsername);
-    localStorage.setItem("email", newEmail);
-    localStorage.setItem("password", newPassword);
-
-    alert("Account created successfully!");
-
-    signupForm.reset();
-
-    signupBox.style.display = "none";
-    loginBox.style.display = "block";
-
-});
-
-loginForm.addEventListener("submit", function (e) {
-
-    e.preventDefault();
-
-    userError.textContent = "";
-    passError.textContent = "";
-
-    let valid = true;
-
-    if (username.value.trim() === "") {
-
-        userError.textContent = "Please enter your username or email.";
-        valid = false;
-
+    function displayLogin() {
+        loginBox.hidden = false;
+        signupBox.hidden = true;
     }
 
-    if (password.value.trim() === "") {
-
-        passError.textContent = "Please enter your password.";
-        valid = false;
-
-    } else if (password.value.length < 6) {
-
-        passError.textContent = "Password must be at least 6 characters.";
-        valid = false;
-
+    function displaySignup() {
+        loginBox.hidden = true;
+        signupBox.hidden = false;
     }
 
-    if (!valid) return;
+    function loadRememberedUser() {
+        const remembered = localStorage.getItem(REMEMBER_KEY);
 
-    const savedUsername = localStorage.getItem("username");
-    const savedEmail = localStorage.getItem("email");
-    const savedPassword = localStorage.getItem("password");
-
-    if (savedUsername === null) {
-
-        alert("No account found. Please sign up first.");
-        return;
-
+        if (remembered) {
+            try {
+                const data = JSON.parse(remembered);
+                usernameInput.value = data.username || "";
+                accountRole.value = data.role || "customer";
+                rememberMe.checked = true;
+            } catch (error) {
+                localStorage.removeItem(REMEMBER_KEY);
+            }
+        }
     }
 
-    if (
-    (username.value === savedUsername ||
-     username.value === savedEmail) &&
-    password.value === savedPassword
-) {
+    togglePassword.addEventListener("click", function () {
+        const isPassword = passwordInput.type === "password";
 
-    alert("Login successful!");
+        passwordInput.type = isPassword ? "text" : "password";
+        togglePassword.textContent = isPassword ? "Hide" : "Show";
+    });
 
-    loginForm.reset();
+    showSignup.addEventListener("click", function (event) {
+        event.preventDefault();
+        displaySignup();
+    });
 
-    window.location.href = "side-menu.html";
+    showLogin.addEventListener("click", function (event) {
+        event.preventDefault();
+        displayLogin();
+    });
 
-} else {
+    forgotPassword.addEventListener("click", function (event) {
+        event.preventDefault();
 
-    alert("Invalid username/email or password.");
+        const emailOrUsername = usernameInput.value.trim();
 
-}
+        if (!emailOrUsername) {
+            alert("Enter your username or email first.");
+            usernameInput.focus();
+            return;
+        }
 
+        const users = getUsers();
+        const user = users.find(function (item) {
+            return item.username.toLowerCase() === emailOrUsername.toLowerCase() ||
+                item.email.toLowerCase() === emailOrUsername.toLowerCase();
+        });
+
+        if (user) {
+            alert("This is a demo website. Password recovery by email is not configured. Please use your registered password.");
+        } else {
+            alert("No account was found with that username or email.");
+        }
+    });
+
+    loginForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        clearErrors();
+
+        const enteredUsername = usernameInput.value.trim().toLowerCase();
+        const enteredPassword = passwordInput.value;
+        const selectedRole = accountRole.value;
+
+        if (!enteredUsername) {
+            userError.textContent = "Please enter your username or email.";
+            return;
+        }
+
+        if (!enteredPassword) {
+            passError.textContent = "Please enter your password.";
+            return;
+        }
+
+        const users = getUsers();
+
+        const matchedUser = users.find(function (user) {
+            const usernameMatches =
+                user.username.toLowerCase() === enteredUsername ||
+                user.email.toLowerCase() === enteredUsername;
+
+            return usernameMatches &&
+                user.password === enteredPassword &&
+                user.role === selectedRole;
+        });
+
+        if (!matchedUser) {
+            passError.textContent = "Invalid login details or account type. Please try again.";
+            return;
+        }
+
+        if (rememberMe.checked) {
+            localStorage.setItem(REMEMBER_KEY, JSON.stringify({
+                username: matchedUser.email,
+                role: matchedUser.role
+            }));
+        } else {
+            localStorage.removeItem(REMEMBER_KEY);
+        }
+
+        localStorage.setItem(ACTIVE_USER_KEY, JSON.stringify({
+            username: matchedUser.username,
+            email: matchedUser.email,
+            role: matchedUser.role
+        }));
+
+        window.location.href = "side-menu.html";
+    });
+
+    signupForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const newUsername = document.getElementById("newUsername").value.trim();
+        const newEmail = document.getElementById("newEmail").value.trim().toLowerCase();
+        const newPassword = document.getElementById("newPassword").value;
+
+        if (newUsername.length < 3) {
+            alert("Username must contain at least 3 characters.");
+            return;
+        }
+
+        if (newPassword.length < 6) {
+            alert("Password must contain at least 6 characters.");
+            return;
+        }
+
+        const users = getUsers();
+
+        const accountExists = users.some(function (user) {
+            return user.username.toLowerCase() === newUsername.toLowerCase() ||
+                user.email.toLowerCase() === newEmail;
+        });
+
+        if (accountExists) {
+            alert("That username or email is already registered.");
+            return;
+        }
+
+        const newUser = {
+            username: newUsername,
+            email: newEmail,
+            password: newPassword,
+            role: "customer"
+        };
+
+        users.push(newUser);
+        saveUsers(users);
+
+        alert("Account created successfully! You can now log in.");
+
+        signupForm.reset();
+        usernameInput.value = newEmail;
+        accountRole.value = "customer";
+        passwordInput.value = "";
+        displayLogin();
+    });
+
+    getUsers();
+    loadRememberedUser();
 });

@@ -1,794 +1,188 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>My Store Dashboard</title>
-
+    <title>My Store</title>
     <link rel="stylesheet" href="side-menu.css">
-
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-
 <body>
-
     <aside class="sidebar" id="sidebar">
-
-        <div class="logo">
-            <i class="fas fa-store"></i>
-            <h2>My Store</h2>
-            <p>Shopping Dashboard</p>
+        <div class="sidebar-header">
+            <div class="brand-icon"><i class="fas fa-store"></i></div>
+            <span class="brand-name">My Store</span>
         </div>
 
-        <div class="menu-group">
-
-            <h4>Main Navigation</h4>
-
-            <a href="#" class="menu-link active" data-section="home">
-                <i class="fas fa-house"></i>
-                <span>Home</span>
-            </a>
-
-            <a href="#" class="menu-link" data-section="products">
-                <i class="fas fa-box"></i>
-                <span>Products</span>
-            </a>
-
-            <a href="#" class="menu-link" data-section="categories">
-                <i class="fas fa-layer-group"></i>
-                <span>Categories</span>
-            </a>
-
+        <div class="sidebar-profile">
+            <div class="profile-avatar"><i class="fas fa-user"></i></div>
+            <div class="profile-details">
+                <strong id="sidebarUsername">My Account</strong>
+                <span id="sidebarRole">Customer</span>
+            </div>
         </div>
 
-        <div class="menu-group">
+        <nav class="sidebar-nav">
+            <p class="nav-label">MENU</p>
+            <a href="#" class="menu-link active" data-section="home"><i class="fas fa-house"></i><span>Dashboard</span></a>
+            <a href="#" class="menu-link" data-section="products"><i class="fas fa-box-open"></i><span>Products</span></a>
+            <a href="#" class="menu-link" data-section="categories"><i class="fas fa-layer-group"></i><span>Categories</span></a>
+            <a href="#" class="menu-link" data-section="cart"><i class="fas fa-shopping-cart"></i><span>My Cart</span><span class="menu-count" id="cartCount">0</span></a>
+            <a href="#" class="menu-link" data-section="orders"><i class="fas fa-receipt"></i><span>My Orders</span></a>
+            <a href="#" class="menu-link" data-section="wishlist"><i class="fas fa-heart"></i><span>Wishlist</span></a>
 
-            <h4>Shopping</h4>
+            <p class="nav-label">ACCOUNT</p>
+            <a href="#" class="menu-link" data-section="profile"><i class="fas fa-user-circle"></i><span>My Profile</span></a>
+            <a href="#" class="menu-link" data-section="settings"><i class="fas fa-gear"></i><span>Settings</span></a>
+            <a href="#" class="menu-link" data-section="logout" id="logoutButton"><i class="fas fa-right-from-bracket"></i><span>Logout</span></a>
+        </nav>
 
-            <a href="#" class="menu-link" data-section="cart">
-                <i class="fas fa-cart-shopping"></i>
-                <span>Cart</span>
-                <span class="cart-count" id="cartCount">0</span>
-            </a>
-
-            <a href="#" class="menu-link" data-section="orders">
-                <i class="fas fa-receipt"></i>
-                <span>My Orders</span>
-            </a>
-
-            <a href="#" class="menu-link" data-section="wishlist">
-                <i class="fas fa-heart"></i>
-                <span>Wishlist</span>
-            </a>
-
-        </div>
-
-        <div class="menu-group">
-
-            <h4>Account</h4>
-
-            <a href="#" class="menu-link" data-section="profile">
-                <i class="fas fa-user"></i>
-                <span>Profile</span>
-            </a>
-
-            <a href="#" class="menu-link" data-section="settings">
-                <i class="fas fa-gear"></i>
-                <span>Settings</span>
-            </a>
-
-        </div>
-
-        <div class="menu-group">
-
-            <h4>System</h4>
-
-            <a href="#" class="menu-link" data-section="logout">
-                <i class="fas fa-right-from-bracket"></i>
-                <span>Logout</span>
-            </a>
-
-        </div>
-
+        <div class="sidebar-footer"><i class="fas fa-shield-halved"></i><span>My Store Shopping</span></div>
     </aside>
 
-    <button class="toggle-btn" id="toggleBtn">
-        <i class="fas fa-bars"></i>
-    </button>
-
-    <main class="content">
-
-        <section id="home" class="page-section active-section">
-
-            <div class="page-header">
+    <main class="main-content">
+        <header class="topbar">
+            <div class="topbar-left">
+                <button type="button" id="toggleBtn" aria-label="Toggle sidebar"><i class="fas fa-bars"></i></button>
                 <div>
-                    <h1>Welcome to My Store</h1>
-                    <p>
-                        Your simple and convenient online shopping
-                        dashboard.
-                    </p>
+                    <h2 id="pageTitle">Dashboard</h2>
+                    <p>Welcome to your shopping space</p>
                 </div>
             </div>
-
-            <div class="welcome-card">
-
-                <div>
-                    <h2>Welcome Back! 👋</h2>
-
-                    <p>
-                        Discover quality products, explore different
-                        categories, manage your orders, and enjoy a
-                        convenient shopping experience.
-                    </p>
-                </div>
-
-            </div>
-
-            <h2 class="section-title">
-                Featured Products
-            </h2>
-
-            <div class="product-grid">
-
-                <div class="product-card">
-
-                    <div class="product-icon">
-                        <i class="fas fa-headphones"></i>
-                    </div>
-
-                    <h3>Wireless Headphones</h3>
-
-                    <p>
-                        High-quality wireless headphones
-                        for everyday use.
-                    </p>
-
-                    <strong>₱1,499</strong>
-
-                </div>
-
-                <div class="product-card">
-
-                    <div class="product-icon">
-                        <i class="fas fa-mobile-screen"></i>
-                    </div>
-
-                    <h3>Smartphone</h3>
-
-                    <p>
-                        Modern smartphone with powerful
-                        performance.
-                    </p>
-
-                    <strong>₱12,999</strong>
-
-                </div>
-
-                <div class="product-card">
-
-                    <div class="product-icon">
-                        <i class="fas fa-keyboard"></i>
-                    </div>
-
-                    <h3>Mechanical Keyboard</h3>
-
-                    <p>
-                        Comfortable keyboard for work
-                        and gaming.
-                    </p>
-
-                    <strong>₱2,499</strong>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <section id="products" class="page-section">
-
-            <div class="page-header">
-
-                <h1>Products</h1>
-
-                <p>
-                    Browse our available products.
-                </p>
-
-            </div>
-
-            <div class="product-grid">
-
-                <div class="product-card">
-
-                    <div class="product-icon">
-                        <i class="fas fa-headphones"></i>
-                    </div>
-
-                    <h3>Wireless Headphones</h3>
-
-                    <p>
-                        Comfortable wireless headphones
-                        with clear sound.
-                    </p>
-
-                    <div class="product-bottom">
-
-                        <strong>₱1,499</strong>
-
-                        <button
-                            class="btn add-cart"
-                            data-product="Wireless Headphones"
-                            data-price="1499">
-
-                            <i class="fas fa-cart-plus"></i>
-                            Add to Cart
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-                <div class="product-card">
-
-                    <div class="product-icon">
-                        <i class="fas fa-mobile-screen"></i>
-                    </div>
-
-                    <h3>Smartphone</h3>
-
-                    <p>
-                        Modern smartphone for communication,
-                        entertainment, and productivity.
-                    </p>
-
-                    <div class="product-bottom">
-
-                        <strong>₱12,999</strong>
-
-                        <button
-                            class="btn add-cart"
-                            data-product="Smartphone"
-                            data-price="12999">
-
-                            <i class="fas fa-cart-plus"></i>
-                            Add to Cart
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-                <div class="product-card">
-
-                    <div class="product-icon">
-                        <i class="fas fa-keyboard"></i>
-                    </div>
-
-                    <h3>Mechanical Keyboard</h3>
-
-                    <p>
-                        Durable mechanical keyboard
-                        suitable for work and gaming.
-                    </p>
-
-                    <div class="product-bottom">
-
-                        <strong>₱2,499</strong>
-
-                        <button
-                            class="btn add-cart"
-                            data-product="Mechanical Keyboard"
-                            data-price="2499">
-
-                            <i class="fas fa-cart-plus"></i>
-                            Add to Cart
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-                <div class="product-card">
-
-                    <div class="product-icon">
-                        <i class="fas fa-computer-mouse"></i>
-                    </div>
-
-                    <h3>Wireless Mouse</h3>
-
-                    <p>
-                        Lightweight wireless mouse
-                        for everyday computer use.
-                    </p>
-
-                    <div class="product-bottom">
-
-                        <strong>₱799</strong>
-
-                        <button
-                            class="btn add-cart"
-                            data-product="Wireless Mouse"
-                            data-price="799">
-
-                            <i class="fas fa-cart-plus"></i>
-                            Add to Cart
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <section id="categories" class="page-section">
-
-            <div class="page-header">
-
-                <h1>Categories</h1>
-
-                <p>
-                    Explore products by category.
-                </p>
-
-            </div>
-
-            <div class="category-grid">
-
-                <div class="category-card">
-
-                    <i class="fas fa-mobile-screen"></i>
-
-                    <h3>Electronics</h3>
-
-                    <p>
-                        Smartphones, headphones, keyboards,
-                        mice, and other electronic products.
-                    </p>
-
-                </div>
-
-                <div class="category-card">
-
-                    <i class="fas fa-shirt"></i>
-
-                    <h3>Fashion</h3>
-
-                    <p>
-                        Clothing, accessories, and other
-                        fashionable products.
-                    </p>
-
-                </div>
-
-                <div class="category-card">
-
-                    <i class="fas fa-house"></i>
-
-                    <h3>Home & Living</h3>
-
-                    <p>
-                        Useful products and accessories
-                        for your home.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <section id="cart" class="page-section">
-
-            <div class="page-header">
-
-                <h1>Shopping Cart</h1>
-
-                <p>
-                    Review your selected products.
-                </p>
-
-            </div>
-
-            <div id="cartItems" class="cart-container">
-
-                <div class="empty-cart">
-
-                    <i class="fas fa-cart-shopping"></i>
-
-                    <h2>Your cart is empty</h2>
-
-                    <p>
-                        Add products from the Products section.
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="cart-summary">
-
-                <h2>
-                    Total:
-                    <span id="cartTotal">₱0</span>
-                </h2>
-
-                <button class="btn checkout-btn" id="checkoutBtn">
-
-                    <i class="fas fa-credit-card"></i>
-                    Checkout
-
+            <div class="topbar-actions">
+                <button type="button" class="topbar-cart" id="topCartButton" aria-label="Open cart">
+                    <i class="fas fa-shopping-bag"></i><span id="topCartCount">0</span>
                 </button>
-
+                <div class="topbar-avatar"><i class="fas fa-user"></i></div>
             </div>
+        </header>
 
-        </section>
-
-        <section id="orders" class="page-section">
-
-            <div class="page-header">
-
-                <h1>My Orders</h1>
-
-                <p>
-                    View your previous orders.
-                </p>
-
-            </div>
-
-            <div class="orders-container">
-
-                <div class="order-card">
-
+        <div class="content-area">
+            <section id="home" class="page-section active">
+                <div class="dashboard-header">
                     <div>
-
-                        <h3>Order #ORD-1001</h3>
-
-                        <p>
-                            Wireless Headphones
-                        </p>
-
+                        <span class="dashboard-tag">MY STORE</span>
+                        <h1>Welcome to My Store!</h1>
+                        <p>Discover great products at great prices.</p>
                     </div>
-
-                    <div>
-
-                        <span class="status delivered">
-                            Delivered
-                        </span>
-
-                        <strong>₱1,499</strong>
-
-                    </div>
-
+                    <div class="dashboard-header-icon"><i class="fas fa-shopping-bag"></i></div>
                 </div>
 
-                <div class="order-card">
-
-                    <div>
-
-                        <h3>Order #ORD-1002</h3>
-
-                        <p>
-                            Mechanical Keyboard
-                        </p>
-
+                <div class="dashboard-banner">
+                    <div class="banner-content">
+                        <span class="banner-label">YOUR FAVORITE STORE</span>
+                        <h2>Find Your Next Favorite Product</h2>
+                        <p>Explore our collection of electronics and everyday essentials.</p>
+                        <button class="banner-button" type="button" data-go="products">Shop Now <i class="fas fa-arrow-right"></i></button>
                     </div>
-
-                    <div>
-
-                        <span class="status shipped">
-                            Shipped
-                        </span>
-
-                        <strong>₱2,499</strong>
-
-                    </div>
-
+                    <div class="banner-icon"><i class="fas fa-tags"></i></div>
                 </div>
 
-                <div class="order-card">
+                <div class="dashboard-section-heading">
+                    <div><h2>Featured Products</h2><p>Explore our popular items.</p></div>
+                    <button class="view-all-button" type="button" data-go="products">View All <i class="fas fa-arrow-right"></i></button>
+                </div>
+                <div id="dashboardProducts" class="product-grid"></div>
+            </section>
 
-                    <div>
+            <section id="products" class="page-section">
+                <div class="section-heading">
+                    <div><h1>Our Products</h1><p>Browse our available products.</p></div>
+                </div>
+                <div id="allProducts" class="product-grid"></div>
+            </section>
 
-                        <h3>Order #ORD-1003</h3>
-
-                        <p>
-                            Wireless Mouse
-                        </p>
-
-                    </div>
-
-                    <div>
-
-                        <span class="status processing">
-                            Processing
-                        </span>
-
-                        <strong>₱799</strong>
-
-                    </div>
-
+            <section id="categories" class="page-section">
+                <div class="section-heading">
+                    <div><h1>Shop by Category</h1><p>Select a category to view its products.</p></div>
                 </div>
 
-            </div>
-
-        </section>
-
-        <section id="wishlist" class="page-section">
-
-            <div class="page-header">
-
-                <h1>Wishlist</h1>
-
-                <p>
-                    Products you saved for later.
-                </p>
-
-            </div>
-
-            <div class="product-grid">
-
-                <div class="wishlist-card">
-
-                    <i class="fas fa-headphones"></i>
-
-                    <h3>Premium Headphones</h3>
-
-                    <p>
-                        Premium audio experience
-                        for music lovers.
-                    </p>
-
-                    <strong>₱2,999</strong>
-
-                    <button class="btn move-cart">
-
-                        <i class="fas fa-cart-plus"></i>
-                        Move to Cart
-
+                <div id="categoryList" class="category-grid">
+                    <button class="category-card" type="button" data-category="Electronics">
+                        <span class="category-icon"><i class="fas fa-laptop"></i></span>
+                        <h3>Electronics</h3>
+                        <p>Phones and laptops</p>
+                        <span class="category-action">View Products <i class="fas fa-arrow-right"></i></span>
                     </button>
-
-                </div>
-
-                <div class="wishlist-card">
-
-                    <i class="fas fa-laptop"></i>
-
-                    <h3>Laptop</h3>
-
-                    <p>
-                        Portable computer for school
-                        and work.
-                    </p>
-
-                    <strong>₱35,999</strong>
-
-                    <button class="btn move-cart">
-
-                        <i class="fas fa-cart-plus"></i>
-                        Move to Cart
-
+                    <button class="category-card" type="button" data-category="Accessories">
+                        <span class="category-icon"><i class="fas fa-keyboard"></i></span>
+                        <h3>Accessories</h3>
+                        <p>Headphones, keyboard, and mouse</p>
+                        <span class="category-action">View Products <i class="fas fa-arrow-right"></i></span>
                     </button>
-
-                </div>
-
-                <div class="wishlist-card">
-
-                    <i class="fas fa-gamepad"></i>
-
-                    <h3>Gaming Controller</h3>
-
-                    <p>
-                        Comfortable controller
-                        for gaming.
-                    </p>
-
-                    <strong>₱1,999</strong>
-
-                    <button class="btn move-cart">
-
-                        <i class="fas fa-cart-plus"></i>
-                        Move to Cart
-
+                    <button class="category-card" type="button" data-category="Gaming">
+                        <span class="category-icon"><i class="fas fa-gamepad"></i></span>
+                        <h3>Gaming</h3>
+                        <p>Gaming gear and controllers</p>
+                        <span class="category-action">View Products <i class="fas fa-arrow-right"></i></span>
                     </button>
-
                 </div>
 
-            </div>
-
-        </section>
-
-        <section id="profile" class="page-section">
-
-            <div class="page-header">
-
-                <h1>My Profile</h1>
-
-                <p>
-                    Manage your personal information.
-                </p>
-
-            </div>
-
-            <div class="profile-card">
-
-                <div class="profile-icon">
-
-                    <i class="fas fa-user"></i>
-
+                <div id="categoryProducts" class="category-products" hidden>
+                    <div class="category-results-header">
+                        <div>
+                            <h2 id="selectedCategoryTitle">Products</h2>
+                            <p id="categoryResultsCount">0 products available</p>
+                        </div>
+                        <button id="backToCategories" class="back-category-button" type="button">
+                            <i class="fas fa-arrow-left"></i> All Categories
+                        </button>
+                    </div>
+                    <div id="categoryProductGrid" class="product-grid"></div>
                 </div>
+            </section>
 
-                <div class="profile-info">
-
-                    <div class="info-row">
-
-                        <span>Name</span>
-
-                        <strong>
-                            Valentin I. Labonete
-                        </strong>
-
+            <section id="cart" class="page-section">
+                <div class="section-heading"><div><h1>My Cart</h1><p>Review your selected items.</p></div></div>
+                <div class="cart-container">
+                    <div id="cartItems" class="cart-items"></div>
+                    <div class="cart-summary">
+                        <h3>Order Summary</h3>
+                        <div class="summary-row"><span>Total</span><strong id="cartTotal">₱0.00</strong></div>
+                        <button type="button" id="checkoutBtn" class="primary-button">Proceed to Checkout</button>
                     </div>
-
-                    <div class="info-row">
-
-                        <span>Email</span>
-
-                        <strong>
-                            valentin@example.com
-                        </strong>
-
-                    </div>
-
-                    <div class="info-row">
-
-                        <span>Course</span>
-
-                        <strong>
-                            BS Information Technology
-                        </strong>
-
-                    </div>
-
-                    <div class="info-row">
-
-                        <span>Year Level</span>
-
-                        <strong>
-                            2st Year 2D
-                        </strong>
-
-                    </div>
-
                 </div>
+            </section>
 
-            </div>
+            <section id="orders" class="page-section">
+                <div class="section-heading"><div><h1>My Orders</h1><p>View your order history.</p></div></div>
+                <div id="ordersContainer" class="orders-container"></div>
+            </section>
 
-        </section>
+            <section id="wishlist" class="page-section">
+                <div class="section-heading"><div><h1>My Wishlist</h1><p>Keep track of products you like.</p></div></div>
+                <div id="wishlistItems" class="product-grid"></div>
+            </section>
 
-        <section id="settings" class="page-section">
-
-            <div class="page-header">
-
-                <h1>Settings</h1>
-
-                <p>
-                    Manage your account preferences.
-                </p>
-
-            </div>
-
-            <div class="settings-container">
-
-                <div class="setting-card">
-
-                    <i class="fas fa-user-gear"></i>
-
-                    <div>
-
-                        <h3>Account Settings</h3>
-
-                        <p>
-                            Manage your username, email,
-                            and account information.
-                        </p>
-
-                    </div>
-
-                    <button class="btn">
-                        Manage
-                    </button>
-
+            <section id="profile" class="page-section">
+                <div class="section-heading"><div><h1>My Profile</h1><p>View your account information.</p></div></div>
+                <div class="profile-card">
+                    <div class="profile-card-icon"><i class="fas fa-user"></i></div>
+                    <h2 id="customerName">My Account</h2>
+                    <p class="profile-description">Your My Store account details</p>
+                    <div class="profile-info-row"><span>Username</span><strong id="customerUsername">-</strong></div>
+                    <div class="profile-info-row"><span>Email</span><strong id="customerEmail">-</strong></div>
+                    <div class="profile-info-row"><span>Account Type</span><strong id="customerRole">Customer</strong></div>
                 </div>
+            </section>
 
-                <div class="setting-card">
-
-                    <i class="fas fa-shield-halved"></i>
-
-                    <div>
-
-                        <h3>Privacy Settings</h3>
-
-                        <p>
-                            Control your privacy and
-                            account security preferences.
-                        </p>
-
-                    </div>
-
-                    <button class="btn">
-                        Manage
-                    </button>
-
+            <section id="settings" class="page-section">
+                <div class="section-heading"><div><h1>Settings</h1><p>Manage your store experience.</p></div></div>
+                <div class="settings-card">
+                    <div class="settings-icon"><i class="fas fa-user-shield"></i></div>
+                    <div><h3>Account Security</h3><p>Your account information is stored locally in this demo.</p></div>
                 </div>
-
-                <div class="setting-card">
-
-                    <i class="fas fa-bell"></i>
-
-                    <div>
-
-                        <h3>Notification Settings</h3>
-
-                        <p>
-                            Manage notifications and
-                            shopping updates.
-                        </p>
-
-                    </div>
-
-                    <button class="btn">
-                        Manage
-                    </button>
-
+                <div class="settings-card">
+                    <div class="settings-icon"><i class="fas fa-circle-info"></i></div>
+                    <div><h3>About My Store</h3><p>A simple online shopping interface built for demonstration.</p></div>
                 </div>
+            </section>
+        </div>
 
-            </div>
-
-        </section>
-
-        <section id="logout" class="page-section">
-
-            <div class="logout-card">
-
-                <i class="fas fa-right-from-bracket"></i>
-
-                <h1>Logout</h1>
-
-                <p>
-                    This section represents the logout
-                    area of the website.
-                </p>
-
-                <p>
-                    Click the button below if you want
-                    to leave your current session.
-                </p>
-
-                <button class="btn logout-btn" id="logoutButton">
-
-                    <i class="fas fa-right-from-bracket"></i>
-                    Logout
-
-                </button>
-
-            </div>
-
-        </section>
-
+        <footer class="page-footer"><p>&copy; 2026 My Store. All rights reserved.</p></footer>
     </main>
 
     <script src="side-menu.js"></script>
-
 </body>
-
 </html>

@@ -4,272 +4,352 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Store Dashboard</title>
+    <title>My Store | Dashboard</title>
     <link rel="stylesheet" href="side-menu.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
-    <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <div class="brand-icon"><i class="fa-solid fa-store"></i></div>
-            <span class="brand-name">My Store</span>
-            <button id="toggleBtn" class="toggle-btn" aria-label="Toggle sidebar">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-        </div>
-
-        <div class="user-summary">
-            <div class="avatar"><i class="fa-solid fa-user"></i></div>
-            <div class="user-summary-info">
-                <strong id="sidebarName">User</strong>
-                <span id="sidebarRole">Customer</span>
-            </div>
-        </div>
-
-        <nav class="sidebar-nav" id="sidebarNav">
-            <div class="nav-label">MENU</div>
-
-            <a href="#" class="menu-link active" data-section="home">
-                <i class="fa-solid fa-house"></i><span>Dashboard</span>
-            </a>
-
-            <a href="#" class="menu-link customer-only" data-section="products">
-                <i class="fa-solid fa-box"></i><span>Products</span>
-            </a>
-            <a href="#" class="menu-link customer-only" data-section="categories">
-                <i class="fa-solid fa-layer-group"></i><span>Categories</span>
-            </a>
-            <a href="#" class="menu-link customer-only" data-section="cart">
-                <i class="fa-solid fa-cart-shopping"></i><span>My Cart</span>
-                <span class="nav-count" id="cartCount">0</span>
-            </a>
-            <a href="#" class="menu-link customer-only" data-section="orders">
-                <i class="fa-solid fa-receipt"></i><span>My Orders</span>
-            </a>
-            <a href="#" class="menu-link customer-only" data-section="wishlist">
-                <i class="fa-solid fa-heart"></i><span>Wishlist</span>
-            </a>
-
-            <a href="#" class="menu-link seller-only" data-section="manage-products">
-                <i class="fa-solid fa-boxes-stacked"></i><span>Product Management</span>
-            </a>
-            <a href="#" class="menu-link seller-only" data-section="manage-orders">
-                <i class="fa-solid fa-clipboard-list"></i><span>Order Management</span>
-            </a>
-            <a href="#" class="menu-link seller-only" data-section="reports">
-                <i class="fa-solid fa-chart-column"></i><span>Sales Reports</span>
-            </a>
-
-            <div class="nav-label">ACCOUNT</div>
-            <a href="#" class="menu-link" data-section="profile">
-                <i class="fa-solid fa-user-gear"></i><span>My Profile</span>
-            </a>
-            <a href="#" class="menu-link" data-section="settings">
-                <i class="fa-solid fa-gear"></i><span>Settings</span>
-            </a>
-            <a href="#" class="menu-link" id="logoutButton">
-                <i class="fa-solid fa-right-from-bracket"></i><span>Logout</span>
-            </a>
-        </nav>
-
-        <div class="sidebar-footer">My Store &copy; 2026</div>
-    </aside>
-
-    <main class="main-content">
-        <header class="topbar">
-            <div>
-                <span class="topbar-label">Welcome back,</span>
-                <h2 id="welcomeName">User</h2>
-            </div>
-            <div class="topbar-right">
-                <span class="role-badge" id="topRole">Customer</span>
-                <span class="date-label" id="currentDate"></span>
-            </div>
-        </header>
-
-        <section class="page-section active" id="home">
-            <div class="welcome-banner">
+    <div class="app">
+        <aside class="sidebar" id="sidebar">
+            <div class="brand">
+                <div class="brand-icon"><i class="fa-solid fa-store"></i></div>
                 <div>
-                    <span class="banner-eyebrow" id="bannerEyebrow">MY STORE</span>
-                    <h1 id="bannerTitle">Find your next favorite item.</h1>
-                    <p id="bannerText">Explore our products and enjoy shopping.</p>
-                    <button class="primary-btn customer-only" data-go="products">
-                        Shop Now <i class="fa-solid fa-arrow-right"></i>
+                    <h2>My Store</h2>
+                    <span id="roleLabel">Customer Portal</span>
+                </div>
+                <button class="close-menu" id="closeMenu" aria-label="Close menu">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="sidebar-user">
+                <div class="avatar" id="sidebarAvatar">U</div>
+                <div class="sidebar-user-info">
+                    <strong id="sidebarName">User</strong>
+                    <span id="sidebarEmail">user@example.com</span>
+                </div>
+            </div>
+
+            <nav class="navigation" aria-label="Main navigation">
+                <p class="nav-heading">MAIN MENU</p>
+
+                <button class="nav-link active" data-page="home">
+                    <i class="fa-solid fa-house"></i><span>Home</span>
+                </button>
+                <button class="nav-link customer-only" data-page="products">
+                    <i class="fa-solid fa-box-open"></i><span>Products</span>
+                </button>
+                <button class="nav-link customer-only" data-page="categories">
+                    <i class="fa-solid fa-layer-group"></i><span>Categories</span>
+                </button>
+                <button class="nav-link customer-only" data-page="cart">
+                    <i class="fa-solid fa-cart-shopping"></i><span>My Cart</span>
+                    <span class="nav-count" id="cartCount">0</span>
+                </button>
+                <button class="nav-link customer-only" data-page="wishlist">
+                    <i class="fa-solid fa-heart"></i><span>Wishlist</span>
+                </button>
+                <button class="nav-link customer-only" data-page="customerOrders">
+                    <i class="fa-solid fa-receipt"></i><span>My Orders</span>
+                </button>
+
+                <p class="nav-heading seller-only">SELLER MANAGEMENT</p>
+                <button class="nav-link seller-only" data-page="manageProducts">
+                    <i class="fa-solid fa-boxes-stacked"></i><span>Manage Products</span>
+                </button>
+                <button class="nav-link seller-only" data-page="sellerOrders">
+                    <i class="fa-solid fa-clipboard-list"></i><span>Orders</span>
+                </button>
+                <button class="nav-link seller-only" data-page="reports">
+                    <i class="fa-solid fa-chart-column"></i><span>Sales Reports</span>
+                </button>
+
+                <p class="nav-heading">ACCOUNT</p>
+                <button class="nav-link" data-page="profile">
+                    <i class="fa-solid fa-user"></i><span>My Profile</span>
+                </button>
+                <button class="nav-link" data-page="settings">
+                    <i class="fa-solid fa-gear"></i><span>Settings</span>
+                </button>
+                <button class="nav-link logout-link" id="logoutButton">
+                    <i class="fa-solid fa-right-from-bracket"></i><span>Logout</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>My Store Management System</span>
+            </div>
+        </aside>
+
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <main class="main">
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+                        <i class="fa-solid fa-bars"></i>
                     </button>
-                    <button class="primary-btn seller-only" data-go="manage-products">
-                        Manage Products <i class="fa-solid fa-arrow-right"></i>
-                    </button>
+                    <div>
+                        <h1 id="pageTitle">Home</h1>
+                        <p id="pageSubtitle">Welcome to My Store</p>
+                    </div>
                 </div>
-                <div class="banner-art"><i class="fa-solid fa-bag-shopping"></i></div>
+                <div class="topbar-right">
+                    <span class="date-display" id="currentDate"></span>
+                    <div class="top-avatar" id="topAvatar">U</div>
+                </div>
+            </header>
+
+            <div class="content">
+                <!-- HOME -->
+                <section class="page-section active" id="page-home">
+                    <div class="hero">
+                        <div class="hero-content">
+                            <span class="hero-tag"><i class="fa-solid fa-star"></i> YOUR ONLINE SHOP</span>
+                            <h2 id="welcomeTitle">Welcome to My Store!</h2>
+                            <p id="welcomeDescription">Discover products you'll love, all in one place.</p>
+                            <button class="btn btn-light customer-only" data-go="products">
+                                Shop Now <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                            <button class="btn btn-light seller-only" data-go="manageProducts">
+                                Manage Products <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        <div class="hero-art"><i class="fa-solid fa-bag-shopping"></i></div>
+                    </div>
+
+                    <div class="stats-grid">
+                        <article class="stat-card">
+                            <div class="stat-icon blue"><i class="fa-solid fa-box"></i></div>
+                            <div><span id="statOneLabel">Available Products</span><h3 id="statProducts">0</h3></div>
+                        </article>
+                        <article class="stat-card">
+                            <div class="stat-icon green"><i class="fa-solid fa-receipt"></i></div>
+                            <div><span id="statTwoLabel">My Orders</span><h3 id="statOrders">0</h3></div>
+                        </article>
+                        <article class="stat-card">
+                            <div class="stat-icon orange"><i class="fa-solid fa-heart"></i></div>
+                            <div><span id="statThreeLabel">Wishlist Items</span><h3 id="statWishlist">0</h3></div>
+                        </article>
+                        <article class="stat-card">
+                            <div class="stat-icon purple"><i class="fa-solid fa-peso-sign"></i></div>
+                            <div><span id="statFourLabel">Total Spent</span><h3 id="statSales">₱0.00</h3></div>
+                        </article>
+                    </div>
+
+                    <div class="section-heading">
+                        <div><h2 id="featuredHeading">Featured Products</h2><p>Explore our product collection.</p></div>
+                        <button class="btn btn-outline customer-only" data-go="products">View All</button>
+                    </div>
+                    <div class="product-grid" id="featuredProducts"></div>
+
+                    <section class="tau-card">
+                        <div class="tau-logo"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <div class="tau-content">
+                            <span class="eyebrow">UNIVERSITY INFORMATION</span>
+                            <h2>Republic of the Philippines</h2>
+                            <h3>TARLAC AGRICULTURAL UNIVERSITY</h3>
+                            <p>Camiling, Tarlac</p>
+                            <p class="tau-vision"><strong>Vision:</strong> TAU as one of the leading and globally recognized smart agricultural universities</p>
+                            <div class="tau-contact">
+                                <span><i class="fa-solid fa-phone"></i> +6345 934 0716</span>
+                                <span><i class="fa-solid fa-phone"></i> +6345 809 0070</span>
+                                <span><i class="fa-solid fa-envelope"></i> presoffice@tau.edu.ph</span>
+                                <span><i class="fa-solid fa-globe"></i> www.tau.edu.ph</span>
+                            </div>
+                            <div class="tau-ranking"><strong>2025</strong><span>Ranked 308</span></div>
+                        </div>
+                    </section>
+
+                    <div class="promotion-banner">
+                        <div>
+                            <span class="eyebrow">SHOP SMARTER</span>
+                            <h2>Find what you need at My Store.</h2>
+                            <p>Browse our categories and discover your next favorite product.</p>
+                        </div>
+                        <i class="fa-solid fa-gift"></i>
+                    </div>
+                </section>
+
+                <!-- PRODUCTS -->
+                <section class="page-section" id="page-products">
+                    <div class="section-heading">
+                        <div><h2>Our Products</h2><p>Browse, search, and add products to your cart.</p></div>
+                    </div>
+                    <div class="toolbar">
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="search" id="productSearch" placeholder="Search products...">
+                        </div>
+                        <select id="productCategoryFilter" aria-label="Filter products by category">
+                            <option value="all">All Categories</option>
+                        </select>
+                        <select id="productSort" aria-label="Sort products">
+                            <option value="default">Sort: Default</option>
+                            <option value="low">Price: Low to High</option>
+                            <option value="high">Price: High to Low</option>
+                            <option value="name">Name: A-Z</option>
+                        </select>
+                    </div>
+                    <div class="product-grid" id="allProducts"></div>
+                    <div class="empty-state hidden" id="noProducts"><i class="fa-solid fa-box-open"></i><h3>No products found</h3><p>Try another search or category.</p></div>
+                </section>
+
+                <!-- CATEGORIES -->
+                <section class="page-section" id="page-categories">
+                    <div class="section-heading"><div><h2>Shop by Category</h2><p>Choose a category to discover products.</p></div></div>
+                    <div class="category-grid" id="categoryGrid"></div>
+                </section>
+
+                <!-- CART -->
+                <section class="page-section" id="page-cart">
+                    <div class="section-heading"><div><h2>My Cart</h2><p>Review your items before checkout.</p></div></div>
+                    <div class="panel">
+                        <div class="table-responsive">
+                            <table>
+                                <thead><tr><th>Product</th><th>Price</th><th>Quantity</th><th>Subtotal</th><th>Action</th></tr></thead>
+                                <tbody id="cartTable"></tbody>
+                            </table>
+                        </div>
+                        <div class="empty-state hidden" id="emptyCart"><i class="fa-solid fa-cart-shopping"></i><h3>Your cart is empty</h3><p>Add products to get started.</p><button class="btn btn-primary" data-go="products">Browse Products</button></div>
+                        <div class="cart-summary" id="cartSummary">
+                            <div><span>Total Amount</span><h2 id="cartTotal">₱0.00</h2></div>
+                            <button class="btn btn-primary" id="checkoutButton"><i class="fa-solid fa-lock"></i> Checkout</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- WISHLIST -->
+                <section class="page-section" id="page-wishlist">
+                    <div class="section-heading"><div><h2>My Wishlist</h2><p>Keep the products you love in one place.</p></div></div>
+                    <div class="product-grid" id="wishlistProducts"></div>
+                    <div class="empty-state hidden" id="emptyWishlist"><i class="fa-solid fa-heart"></i><h3>Your wishlist is empty</h3><p>Save products you want to find later.</p><button class="btn btn-primary" data-go="products">Explore Products</button></div>
+                </section>
+
+                <!-- CUSTOMER ORDERS -->
+                <section class="page-section" id="page-customerOrders">
+                    <div class="section-heading"><div><h2>My Orders</h2><p>Review your order history and order status.</p></div></div>
+                    <div class="panel">
+                        <div class="table-responsive">
+                            <table>
+                                <thead><tr><th>Order Number</th><th>Date</th><th>Product(s)</th><th>Total Amount</th><th>Status</th></tr></thead>
+                                <tbody id="customerOrdersTable"></tbody>
+                            </table>
+                        </div>
+                        <div class="empty-state hidden" id="emptyCustomerOrders"><i class="fa-solid fa-receipt"></i><h3>No orders yet</h3><p>Your completed checkouts will appear here.</p></div>
+                    </div>
+                </section>
+
+                <!-- SELLER PRODUCT MANAGEMENT -->
+                <section class="page-section" id="page-manageProducts">
+                    <div class="section-heading"><div><h2>Manage Products</h2><p>Add, edit, and maintain your product inventory.</p></div><button class="btn btn-primary" id="newProductButton"><i class="fa-solid fa-plus"></i> Add Product</button></div>
+                    <div class="toolbar">
+                        <div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="search" id="sellerProductSearch" placeholder="Search product name or category..."></div>
+                    </div>
+                    <div class="panel">
+                        <div class="table-responsive">
+                            <table>
+                                <thead><tr><th>Product</th><th>Category</th><th>Price</th><th>Stock</th><th>Actions</th></tr></thead>
+                                <tbody id="sellerProductsTable"></tbody>
+                            </table>
+                        </div>
+                        <div class="empty-state hidden" id="emptySellerProducts"><i class="fa-solid fa-box"></i><h3>No products yet</h3><p>Add your first product to get started.</p></div>
+                    </div>
+                </section>
+
+                <!-- SELLER ORDERS -->
+                <section class="page-section" id="page-sellerOrders">
+                    <div class="section-heading"><div><h2>Customer Orders</h2><p>View orders and update their status.</p></div></div>
+                    <div class="panel">
+                        <div class="table-responsive">
+                            <table>
+                                <thead><tr><th>Order Number</th><th>Customer</th><th>Product(s)</th><th>Date</th><th>Total</th><th>Status</th><th>Update Status</th></tr></thead>
+                                <tbody id="sellerOrdersTable"></tbody>
+                            </table>
+                        </div>
+                        <div class="empty-state hidden" id="emptySellerOrders"><i class="fa-solid fa-clipboard-list"></i><h3>No customer orders</h3><p>Orders will appear here after checkout.</p></div>
+                    </div>
+                </section>
+
+                <!-- REPORTS -->
+                <section class="page-section" id="page-reports">
+                    <div class="section-heading"><div><h2>Sales Reports</h2><p>Overview of your store's order and sales activity.</p></div></div>
+                    <div class="stats-grid">
+                        <article class="stat-card"><div class="stat-icon blue"><i class="fa-solid fa-box"></i></div><div><span>Total Products</span><h3 id="reportProducts">0</h3></div></article>
+                        <article class="stat-card"><div class="stat-icon green"><i class="fa-solid fa-receipt"></i></div><div><span>Total Orders</span><h3 id="reportOrders">0</h3></div></article>
+                        <article class="stat-card"><div class="stat-icon purple"><i class="fa-solid fa-peso-sign"></i></div><div><span>Total Sales</span><h3 id="reportSales">₱0.00</h3></div></article>
+                        <article class="stat-card"><div class="stat-icon orange"><i class="fa-solid fa-clock"></i></div><div><span>Pending Orders</span><h3 id="reportPending">0</h3></div></article>
+                    </div>
+                    <div class="panel">
+                        <h3 class="panel-title">Order Summary</h3>
+                        <div class="table-responsive"><table><thead><tr><th>Status</th><th>Number of Orders</th><th>Total Amount</th></tr></thead><tbody id="reportSummaryTable"></tbody></table></div>
+                    </div>
+                </section>
+
+                <!-- PROFILE -->
+                <section class="page-section" id="page-profile">
+                    <div class="section-heading"><div><h2>My Profile</h2><p>Manage your personal and store information.</p></div></div>
+                    <div class="profile-layout">
+                        <div class="panel profile-card">
+                            <div class="profile-avatar" id="profileAvatar">U</div>
+                            <h2 id="profileDisplayName">Your Name</h2>
+                            <p id="profileDisplayRole">Customer</p>
+                            <span class="profile-badge"><i class="fa-solid fa-circle-check"></i> Registered Account</span>
+                        </div>
+                        <form class="panel profile-form" id="profileForm">
+                            <h3 class="panel-title">Account Information</h3>
+                            <div class="form-grid">
+                                <label>Full Name<input type="text" id="profileName" required maxlength="100"></label>
+                                <label>Username<input type="text" id="profileUsername" required maxlength="50"></label>
+                                <label>Email Address<input type="email" id="profileEmail" required maxlength="120"></label>
+                                <label>Contact Number<input type="tel" id="profileContact" placeholder="e.g. 09XXXXXXXXX" maxlength="20"></label>
+                                <label class="seller-only">Store Name<input type="text" id="profileStore" maxlength="100"></label>
+                                <label class="seller-only">Store Contact Information<input type="text" id="profileStoreContact" maxlength="100" placeholder="Phone or business email"></label>
+                            </div>
+                            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Save Profile</button>
+                            <p class="form-note">Profile details are saved in this browser for this demo.</p>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- SETTINGS -->
+                <section class="page-section" id="page-settings">
+                    <div class="section-heading"><div><h2>Settings</h2><p>Manage your My Store preferences.</p></div></div>
+                    <div class="panel settings-panel">
+                        <div class="settings-row"><div><h3>Account Type</h3><p>Your dashboard is based on the role of your registered account.</p></div><span class="status-badge" id="settingsRole">Customer</span></div>
+                        <div class="settings-row"><div><h3>Store Data</h3><p>Products, cart items, wishlist, and orders are stored in this browser.</p></div><i class="fa-solid fa-database settings-icon"></i></div>
+                        <div class="settings-row"><div><h3>Sign Out</h3><p>End your current session and return to the login page.</p></div><button class="btn btn-danger" id="settingsLogout"><i class="fa-solid fa-right-from-bracket"></i> Logout</button></div>
+                    </div>
+                </section>
             </div>
 
-            <div class="stats-grid">
-                <div class="stat-card customer-only">
-                    <div class="stat-icon blue"><i class="fa-solid fa-box"></i></div>
-                    <div><span>Available Products</span><strong id="customerProductCount">0</strong></div>
-                </div>
-                <div class="stat-card customer-only">
-                    <div class="stat-icon purple"><i class="fa-solid fa-cart-shopping"></i></div>
-                    <div><span>Cart Items</span><strong id="customerCartCount">0</strong></div>
-                </div>
-                <div class="stat-card customer-only">
-                    <div class="stat-icon green"><i class="fa-solid fa-receipt"></i></div>
-                    <div><span>My Orders</span><strong id="customerOrderCount">0</strong></div>
-                </div>
+            <footer class="footer">
+                <span>© <span id="footerYear"></span> My Store</span>
+                <span>Online Shopping Management System</span>
+            </footer>
+        </main>
+    </div>
 
-                <div class="stat-card seller-only">
-                    <div class="stat-icon blue"><i class="fa-solid fa-boxes-stacked"></i></div>
-                    <div><span>Total Products</span><strong id="sellerProductCount">0</strong></div>
-                </div>
-                <div class="stat-card seller-only">
-                    <div class="stat-icon purple"><i class="fa-solid fa-bag-shopping"></i></div>
-                    <div><span>Total Orders</span><strong id="sellerOrderCount">0</strong></div>
-                </div>
-                <div class="stat-card seller-only">
-                    <div class="stat-icon green"><i class="fa-solid fa-peso-sign"></i></div>
-                    <div><span>Total Sales</span><strong id="sellerSales">₱0.00</strong></div>
-                </div>
-            </div>
-
-            <div class="section-heading">
-                <div>
-                    <h2 id="featuredHeading">Featured Products</h2>
-                    <p id="featuredDescription">Discover products you might like.</p>
-                </div>
-                <button class="text-btn customer-only" data-go="products">View All</button>
-            </div>
-
-            <div class="product-grid" id="dashboardProducts"></div>
-
-            <div class="seller-only seller-shortcuts">
-                <div class="section-heading"><div><h2>Quick Actions</h2><p>Manage your online store.</p></div></div>
-                <div class="quick-actions">
-                    <button class="quick-action" data-go="manage-products"><i class="fa-solid fa-plus"></i><span>Add or Manage Products</span></button>
-                    <button class="quick-action" data-go="manage-orders"><i class="fa-solid fa-clipboard-check"></i><span>Review Customer Orders</span></button>
-                    <button class="quick-action" data-go="reports"><i class="fa-solid fa-chart-line"></i><span>View Sales Reports</span></button>
-                </div>
-            </div>
-        </section>
-
-        <section class="page-section" id="products">
-            <div class="section-heading">
-                <div><h1>Our Products</h1><p>Choose your favorite products.</p></div>
-            </div>
-            <div class="toolbar">
-                <input type="search" id="productSearch" placeholder="Search products...">
-                <select id="productFilter">
-                    <option value="All">All Categories</option>
-                    <option value="Electronics">Electronics</option>
-                    <option value="Accessories">Accessories</option>
-                    <option value="Gaming">Gaming</option>
-                </select>
-            </div>
-            <div class="product-grid" id="allProducts"></div>
-        </section>
-
-        <section class="page-section" id="categories">
-            <div class="section-heading"><div><h1>Categories</h1><p>Select a category to explore its products.</p></div></div>
-            <div class="category-grid">
-                <button class="category-card" data-category="Electronics"><i class="fa-solid fa-laptop"></i><strong>Electronics</strong><span>Phones, laptops and more</span></button>
-                <button class="category-card" data-category="Accessories"><i class="fa-solid fa-headphones"></i><strong>Accessories</strong><span>Everyday essentials</span></button>
-                <button class="category-card" data-category="Gaming"><i class="fa-solid fa-gamepad"></i><strong>Gaming</strong><span>Gear for gaming</span></button>
-            </div>
-            <div id="categoryResults" class="category-results" hidden>
-                <div class="section-heading"><div><h2 id="categoryTitle">Products</h2></div><button class="text-btn" id="clearCategory">Show All Categories</button></div>
-                <div class="product-grid" id="categoryProducts"></div>
-            </div>
-        </section>
-
-        <section class="page-section" id="cart">
-            <div class="section-heading"><div><h1>My Cart</h1><p>Review the items you want to purchase.</p></div></div>
-            <div id="cartItems" class="cart-list"></div>
-            <div class="cart-summary">
-                <div><span>Total</span><strong id="cartTotal">₱0.00</strong></div>
-                <button id="checkoutBtn" class="primary-btn">Place Order</button>
-            </div>
-        </section>
-
-        <section class="page-section" id="orders">
-            <div class="section-heading"><div><h1>My Orders</h1><p>Review your order history.</p></div></div>
-            <div id="ordersContainer" class="orders-list"></div>
-        </section>
-
-        <section class="page-section" id="wishlist">
-            <div class="section-heading"><div><h1>My Wishlist</h1><p>Products you saved for later.</p></div></div>
-            <div id="wishlistItems" class="product-grid"></div>
-        </section>
-
-        <section class="page-section" id="manage-products">
-            <div class="section-heading"><div><h1>Product Management</h1><p>Add, edit, or remove products from your store.</p></div></div>
-            <form id="productForm" class="form-card">
+    <!-- PRODUCT FORM MODAL -->
+    <div class="modal hidden" id="productModal" role="dialog" aria-modal="true" aria-labelledby="productModalTitle">
+        <div class="modal-card">
+            <div class="modal-header"><div><h2 id="productModalTitle">Add Product</h2><p>Enter the product details below.</p></div><button class="icon-button" id="closeProductModal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button></div>
+            <form id="productForm">
                 <input type="hidden" id="editProductId">
+                <label>Product Name<input type="text" id="inputProductName" required maxlength="100" placeholder="Enter product name"></label>
                 <div class="form-grid">
-                    <label>Product Name<input id="sellerProductName" required maxlength="80" placeholder="Enter product name"></label>
-                    <label>Category<select id="sellerProductCategory" required><option value="Electronics">Electronics</option><option value="Accessories">Accessories</option><option value="Gaming">Gaming</option></select></label>
-                    <label>Price (₱)<input id="sellerProductPrice" type="number" required min="0.01" step="0.01" placeholder="0.00"></label>
-                    <label>Image URL (optional)<input id="sellerProductImage" type="url" placeholder="https://example.com/image.jpg"></label>
+                    <label>Price (₱)<input type="number" id="inputProductPrice" required min="0.01" step="0.01"></label>
+                    <label>Category<input type="text" id="inputProductCategory" required maxlength="50" list="categoryOptions" placeholder="e.g. Electronics"><datalist id="categoryOptions"></datalist></label>
+                    <label>Stock / Quantity<input type="number" id="inputProductStock" required min="0" step="1"></label>
+                    <label>Product Icon<input type="text" id="inputProductIcon" maxlength="10" placeholder="e.g. 🎧"></label>
                 </div>
-                <div class="form-actions">
-                    <button type="submit" class="primary-btn" id="saveProductBtn">Add Product</button>
-                    <button type="button" class="secondary-btn" id="cancelProductEdit" hidden>Cancel Edit</button>
-                </div>
+                <div class="modal-actions"><button type="button" class="btn btn-outline" id="cancelProductModal">Cancel</button><button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Save Product</button></div>
             </form>
-            <div class="section-heading"><div><h2>Store Inventory</h2></div></div>
-            <div class="table-wrap">
-                <table>
-                    <thead><tr><th>Product</th><th>Category</th><th>Price</th><th>Actions</th></tr></thead>
-                    <tbody id="sellerProductTable"></tbody>
-                </table>
-            </div>
-        </section>
+        </div>
+    </div>
 
-        <section class="page-section" id="manage-orders">
-            <div class="section-heading"><div><h1>Order Management</h1><p>Review customer orders and update their status.</p></div></div>
-            <div class="table-wrap">
-                <table>
-                    <thead><tr><th>Order ID</th><th>Customer</th><th>Items</th><th>Total</th><th>Status</th><th>Action</th></tr></thead>
-                    <tbody id="sellerOrdersTable"></tbody>
-                </table>
-            </div>
-        </section>
-
-        <section class="page-section" id="reports">
-            <div class="section-heading"><div><h1>Sales Reports</h1><p>A summary of orders stored in this demo.</p></div></div>
-            <div class="stats-grid">
-                <div class="stat-card"><div class="stat-icon blue"><i class="fa-solid fa-receipt"></i></div><div><span>Orders</span><strong id="reportOrders">0</strong></div></div>
-                <div class="stat-card"><div class="stat-icon green"><i class="fa-solid fa-peso-sign"></i></div><div><span>Sales Total</span><strong id="reportSales">₱0.00</strong></div></div>
-            </div>
-            <div class="table-wrap">
-                <table>
-                    <thead><tr><th>Order ID</th><th>Customer</th><th>Date</th><th>Total</th><th>Status</th></tr></thead>
-                    <tbody id="reportsTable"></tbody>
-                </table>
-            </div>
-        </section>
-
-        <section class="page-section" id="profile">
-            <div class="section-heading"><div><h1>My Profile</h1><p>Your account information.</p></div></div>
-            <form id="profileForm" class="form-card">
-                <div class="form-grid">
-                    <label>Full Name<input id="profileName" required></label>
-                    <label>Username<input id="profileUsername" required></label>
-                    <label>Email<input id="profileEmail" type="email" required></label>
-                    <label>Account Role<input id="profileRole" readonly></label>
-                </div>
-                <button type="submit" class="primary-btn">Save Profile</button>
-            </form>
-        </section>
-
-        <section class="page-section" id="settings">
-            <div class="section-heading"><div><h1>Settings</h1><p>Manage your basic preferences.</p></div></div>
-            <div class="settings-card">
-                <div><strong>Account</strong><p>Signed in as <span id="settingsUsername">User</span>.</p></div>
-                <button class="secondary-btn" id="settingsLogout">Logout</button>
-            </div>
-        </section>
-
-        <footer class="page-footer">My Store &copy; 2026. All rights reserved.</footer>
-    </main>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
     <script src="side-menu.js"></script>
 </body>
